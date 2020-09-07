@@ -1,0 +1,15 @@
+.header-block {
+  height: 200px;
+  background-color: #cbcccc;
+  text-align: center;
+  padding: 20px;
+
+}
+
+.middle-block {
+  height: 65px;
+}
+
+mat-grid-tile {
+  background-color: #cbcccc;
+}
