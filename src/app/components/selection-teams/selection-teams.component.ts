@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from '../../models/team'
+import { Winner } from '../../models/winner'
 import { CupService } from '../../services/cup.service'
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PopUpComponent } from 'src/app/Shared/pop-up/pop-up.component';
+import { Router, NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -10,16 +13,13 @@ import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
   styleUrls: ['./selection-teams.component.css']
 })
 export class SelectionTeamsComponent implements OnInit {
-  check: [];
-  teamArray: FormArray;
-  teams: Team[];
-  teamForm: FormGroup;
-  selectedTeams: Team[];
 
-  constructor(private cupService: CupService, private formBuilder: FormBuilder) {
-    this.teamForm = this.formBuilder.group({
-      teamArray: this.formBuilder.array([])
-    });
+  teams: Team[];
+  selectedTeams: Team[];
+  debug = false;
+
+  constructor(private cupService: CupService, public dialog: MatDialog, private router: Router) {
+
   }
 
   ngOnInit(): void {
@@ -34,14 +34,24 @@ export class SelectionTeamsComponent implements OnInit {
   }
 
   generateCup() {
-    this.teamForm = this.formBuilder.group({
-      teamArray: this.formBuilder.array(this.selectedTeams)
-    });
+    if (this.selectedTeams.length != 8) {
+      this.openDialog("Deverá ter exatamaneto 8 equipes para gerar a copa");
+    } else {
+
+      this.cupService.post(this.selectedTeams).subscribe(winners => {
+        this.cupService.showMessage("Copa Gerada")
+        localStorage.setItem('winners', JSON.stringify(winners));
+        this.router.navigate(['winners']);
+      });
+
+    }
   }
 
   onChange(team: Team, isChecked: boolean) {
     if (isChecked) {
+
       this.selectedTeams.push(team);
+
     }
     else {
       const index = this.selectedTeams.indexOf(team);
@@ -50,5 +60,11 @@ export class SelectionTeamsComponent implements OnInit {
     }
   }
 
-}
+  openDialog(string: String) {
+    this.dialog.open(PopUpComponent, {
+      data: string
+    });
 
+  }
+
+}

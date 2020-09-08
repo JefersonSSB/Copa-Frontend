@@ -1,0 +1,10 @@
+.header-block {
+  height: 200px;
+  background-color: #cbcccc;
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  height: 100%;
+}

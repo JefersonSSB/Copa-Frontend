@@ -3,5 +3,4 @@ export interface Team {
   nome: string
   sigla: string
   gols: number
-  postion: number
 }

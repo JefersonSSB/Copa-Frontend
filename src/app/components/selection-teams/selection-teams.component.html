@@ -1,25 +1,14 @@
-<div class="container">
-
-  <div class="header-block">
-    <div class="title-container">
-      Copa<br>
-      Fase de Seleção<br>
-      _______________<br>
-      Selecione 8 equipes que você deseja para a competição e depois pressione o botão Gerar Copa para prosseguir
-    </div>
-  </div>
-  <div class="middle-block"></div>
-  <button (click)="generateCup()">imprimir</button>
-  {{selectedTeamsLentgh()}}
-  <div class="content-block">
-    <mat-grid-list cols="4" rowHeight="4:1" gutterSize="5px">
-      <mat-grid-tile *ngFor="let team of teams; let i = index">
-        <input type="checkbox" (change)="onChange(team, $event.target.checked)">
-        {{team.nome}}
-        <div></div>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </div>
+<div class="middle-block">
+  <Strong>Selecionados</Strong><br>
+  {{selectedTeamsLentgh()}} de 8 equipes
+  <button mat-stroked-button (click)="generateCup()">Gerar Copa</button>
 </div>
-
-<pre>{{teamForm.value | json}}</pre>
+<div class="content-block">
+  <mat-grid-list cols="4" rowHeight="4:1" gutterSize="5px">
+    <mat-grid-tile *ngFor="let team of teams; let i = index">
+      <input type="checkbox" (change)="onChange(team, $event.target.checked)">
+      {{team.nome}}<br>
+      {{team.sigla}}
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

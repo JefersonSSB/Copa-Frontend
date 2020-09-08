@@ -1,15 +1,20 @@
-.header-block {
-  height: 200px;
-  background-color: #cbcccc;
-  text-align: center;
-  padding: 20px;
-
+.middle-block {
+  padding: 10px;
+  height: 65px;
 }
 
-.middle-block {
-  height: 65px;
+.content-block {
+  position: relative;
 }
 
 mat-grid-tile {
   background-color: #cbcccc;
+}
+
+input {
+  margin-right: 30px;
+}
+
+button {
+  float: right;
 }
