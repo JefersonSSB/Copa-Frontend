@@ -1,9 +1,14 @@
 # CopaFront
 
 Tecnologias utilizadas?
+
 Node 12.6.0
+
 Npm 6.9.0
+
 Angular 10.0.7
+
+
 
 O que é necessário para executar?
 
