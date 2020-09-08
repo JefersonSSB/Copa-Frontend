@@ -15,6 +15,9 @@ export class WinnerTeamsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    localStorage.setItem('header', "Resultado Final");
+    localStorage.setItem('description', "Veja o resultado final da Copa de froma simples e rápida");
     this.winner = JSON.parse(localStorage.getItem('winners'));
 
     if (this.winner[0].position === 1) {

@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Team } from '../../models/team'
-import { Winner } from '../../models/winner'
 import { CupService } from '../../services/cup.service'
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from 'src/app/Shared/pop-up/pop-up.component';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,6 +22,8 @@ export class SelectionTeamsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.setItem('header', "Fase de Seleção");
+    localStorage.setItem('description', "Selecione 8 equipes que você deseja para a competição e depois pressione o botão Gerar Copa para prosseguir");
     this.selectedTeams = [];
     this.cupService.read().subscribe(teams => {
       this.teams = teams;
